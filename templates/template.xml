@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Implement Product Image in Sale Order in Customer Portal    -->
+    <template id="product_image_sale_order_portal_content" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//thead[hasclass('bg-100')]/tr/th[1]" position="before">
+            <th class="text-left"></th>
+        </xpath>
+        <xpath expr="//thead[hasclass('bg-100')]/tr/th[3]" position="before">
+            <th class="text-left">UOM</th>
+        </xpath>
+        <xpath expr="//td[@id='product_name']" position="before">
+            <td id="product_image">
+                <img t-att-src="'/web/image/product.product/%s/image_1920/120x120' % line.sudo().product_id.id"
+                     class="d-block"
+                     alt="Product Image"/>
+            </td>
+        </xpath>
+        <xpath expr="//td[@id='product_name']" position="after">
+            <td id="product_uom">
+                <span t-field="line.sudo().product_uom.name"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>
